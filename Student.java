@@ -1,38 +1,36 @@
 package com;
 
-
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends Person implements Displayable{
-    private int age;
+class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private String studentName;
+    private int studentId;
     private double grade;
-    private List<Course> list=new ArrayList<>();
 
-    public Student(String name, int age, double grade) {
-        super(name);
-        this.age = age;
+    public Student(String studentName, int studentId, double grade) {
+        this.studentName = studentName;
+        this.studentId = studentId;
         this.grade = grade;
     }
 
-    public Student(int age, double grade) {
-        this.age = age;
-        this.grade = grade;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public Student(String name) {
-        super(name);
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public Student() {
+    public int getStudentId() {
+        return studentId;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public double getGrade() {
@@ -43,24 +41,8 @@ public class Student extends Person implements Displayable{
         this.grade = grade;
     }
 
-    public void enroll(Course course){
-        list.add(course);
-        course.getList().add(new Student(name,age,grade));
-    }
-
     @Override
     public String toString() {
-        return "Student{" +
-                "age=" + age +
-                ", grade=" + grade +
-                '}';
-    }
-
-    @Override
-    public void displayInfo() {
-        System.out.println("COURSE OF " + "'" + name + "' is: " + list.size() );
-        for(Course x : list){
-            System.out.printf("%-15d %-55s\n" , x.getCourseId() , x.getCourseName());
-        }
+        return "Student [Name: " + studentName + ", ID: " + studentId + ", Grade: " + grade + "]";
     }
 }
